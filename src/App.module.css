@@ -1,0 +1,22 @@
+.App {
+  text-align: center;
+}
+.button{
+	border: 1px solid blue;
+	background : green;
+    color : white;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 3px
+}
+.button:hover{
+	background-color : lightgreen;
+	color : black
+}
+
+.red{
+	background : red;
+}
+.red:hover{
+	background : salmon;
+}
