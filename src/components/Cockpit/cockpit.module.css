@@ -1,0 +1,24 @@
+.red{
+	background : red;
+}
+.textRed{
+    color : red
+}
+.red:hover{
+	background : salmon;
+}
+button{
+	border: 1px solid blue;
+	background : green;
+    color : white;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 3px
+}
+button:hover{
+	background-color : lightgreen;
+	color : black
+}
+.bold{
+    font-weight: bold
+}
