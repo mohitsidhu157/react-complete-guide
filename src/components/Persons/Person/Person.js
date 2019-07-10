@@ -2,6 +2,8 @@ import React, {PureComponent} from "react";
 import classes from './Person.module.css';
 import withClass from "../../../HOCs/withClass";
 import Aux from "../../../HOCs/Aux";
+import PropTypes from "prop-types";
+
 class Person extends PureComponent{
     constructor(props){
         super(props);
@@ -12,7 +14,8 @@ class Person extends PureComponent{
         console.log("Inside componentWillMount() [Person.js]");
     }
     componentDidMount(){
-        console.log("Inside componentDidMount() [Person.js]")
+        console.log("Inside componentDidMount() [Person.js]");
+        this.inputElement.focus();
     }
     componentWillReceiveProps(nextProps){
         console.log("inside componentWillReceiveProps in [Person.js]", nextProps);
@@ -35,9 +38,18 @@ class Person extends PureComponent{
             <h1 onClick={this.props.click}>I am a Person. My name is {this.props.name} and i am {this.props.age} years old.!! </h1>
            
             {/** Two-way binding */}
-            <input type="text" onChange={this.props.changed} value={this.props.name}/>
+            <input 
+                type="text" 
+                ref={(inp) => this.inputElement = inp}
+                onChange={this.props.changed} 
+                value={this.props.name}/>
             </Aux>
     }
 }
-
+Person.propTypes = {
+    click : PropTypes.func,
+    changed : PropTypes.func,
+    name : PropTypes.string,
+    age : PropTypes.number
+}
 export default withClass(Person,classes.Person);
