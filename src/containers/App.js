@@ -16,7 +16,8 @@ class App extends PureComponent {
             { id : 'lkass',name: "Manu", age: 21, children: "My hobbies : Talking alot." },
             { id : 'asknl', name: "Mk", age: 22 }
         ],
-        showPerson : false
+        showPerson : false,
+        toggleClicked : 0
     }
     componentWillMount(){
         console.log("Inside componentWillMount() [App.js]");
@@ -59,7 +60,13 @@ class App extends PureComponent {
     }
     togglePerson = () => {
         const currentValue = this.state.showPerson;
-        this.setState({ showPerson: !currentValue })
+        this.setState((prevState,props)=>{ 
+            return {
+                showPerson: !currentValue ,
+                toggleClicked : prevState.toggleClicked + 1
+            }
+            
+        })
     }    
     render() {
         console.log("Inside render() [App.js]")
