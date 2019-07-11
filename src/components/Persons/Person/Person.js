@@ -8,6 +8,7 @@ class Person extends PureComponent{
     constructor(props){
         super(props);
         console.log("Inside constructor[Person.js]");
+        this.inputElement = React.createRef();
         //We can also initialize the state in constructor this.state
     }
     componentWillMount(){
@@ -15,7 +16,9 @@ class Person extends PureComponent{
     }
     componentDidMount(){
         console.log("Inside componentDidMount() [Person.js]");
-        this.inputElement.focus();
+    }
+    focus(){
+        this.inputElement.current.focus();
     }
     componentWillReceiveProps(nextProps){
         console.log("inside componentWillReceiveProps in [Person.js]", nextProps);
@@ -40,7 +43,7 @@ class Person extends PureComponent{
             {/** Two-way binding */}
             <input 
                 type="text" 
-                ref={(inp) => this.inputElement = inp}
+                ref={this.inputElement}
                 onChange={this.props.changed} 
                 value={this.props.name}/>
             </Aux>

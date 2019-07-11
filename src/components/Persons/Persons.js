@@ -6,13 +6,15 @@ class Persons extends PureComponent{
     constructor(props){
         super(props);
         console.log("Inside constructor[Persons.js]");
+        this.lastPersonRef = React.createRef();
         //We can also initialize the state in constructor this.state
     }
     componentWillMount(){
         console.log("Inside componentWillMount() [Persons.js]");
     }
     componentDidMount(){
-        console.log("Inside componentDidMount() [Persons.js]")
+        console.log("Inside componentDidMount() [Persons.js]");
+        this.lastPersonRef.current.focus();
     }
     componentWillReceiveProps(nextProps){
         console.log("inside componentWillReceiveProps in [Person.js]", nextProps);
@@ -37,9 +39,11 @@ class Persons extends PureComponent{
             return (
                 <Errorboundry key={index} >
                 <Person 
+                ref={this.lastPersonRef}
                 changed={(event) => this.props.changed(event,person.id)}
                 click={()=> this.props.clicked(index)} 
                 name={person.name} age={person.age} 
+                position={index}
                 />
             </Errorboundry> 
             )}
