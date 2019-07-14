@@ -3,6 +3,7 @@ import classes from './Person.module.css';
 import withClass from "../../../HOCs/withClass";
 import Aux from "../../../HOCs/Aux";
 import PropTypes from "prop-types";
+import { AuthContext } from "../../../containers/App";
 
 class Person extends PureComponent{
     constructor(props){
@@ -38,7 +39,10 @@ class Person extends PureComponent{
     render(){
         console.log("Inside render() [Person.js]");
         return <Aux> 
-            {this.props.authenticated ? <p>I am authenticated</p>:null}
+            <AuthContext.Consumer>
+            {(auth) => auth ? <p>I am authenticated</p>:null}
+
+            </AuthContext.Consumer>
             <h1 onClick={this.props.click}>I am a Person. My name is {this.props.name} and i am {this.props.age} years old.!! </h1>
            
             {/** Two-way binding */}
