@@ -4,6 +4,9 @@ import Persons from '../components/Persons/Persons.js';
 import Cockpit from '../components/Cockpit/Cockpit';
 import withClass from "../HOCs/withClass";
 import Aux from '../HOCs/Aux';
+
+const AuthContext = React.createContext(false);
+
 class App extends PureComponent {
     constructor(props){
         super(props);
@@ -17,7 +20,8 @@ class App extends PureComponent {
             { id : 'asknl', name: "Mk", age: 22 }
         ],
         showPerson : false,
-        toggleClicked : 0
+        toggleClicked : 0,
+        authenticated : false
     }
     componentWillMount(){
         console.log("Inside componentWillMount() [App.js]");
@@ -68,6 +72,9 @@ class App extends PureComponent {
             
         })
     }    
+    loginHandler = ( ) => {
+        this.setState({authenticated : true});
+    }
     render() {
         console.log("Inside render() [App.js]")
         let person = null;
@@ -78,7 +85,9 @@ class App extends PureComponent {
                 <div>
                     <Persons nameArray={this.state.nameArray} 
                     clicked={this.deleteNameHandler} 
-                    changed={this.nameChangeHandler}/>
+                    changed={this.nameChangeHandler}
+                    isAuthenticated={this.state.authenticated}    
+                />
                                     
                      {/* Passing functions as a reference
                         <Person onClick={this.switchNameHandler} name={this.state.nameArray[1].name} age={this.state.nameArray[1].age} changed={this.nameChangeHandler} />
@@ -95,10 +104,13 @@ class App extends PureComponent {
                     nameArray={this.state.nameArray} 
                     toggle={this.togglePerson} 
                     show = {this.state.showPerson}
+                    login = {this.loginHandler}
                 />
+                <AuthContext.Provider value={this.state.authenticated}>
                 {
                    person 
                 }
+                </AuthContext.Provider>
 
             </Aux>
             

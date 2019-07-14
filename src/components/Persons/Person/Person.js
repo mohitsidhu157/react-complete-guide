@@ -37,7 +37,8 @@ class Person extends PureComponent{
     }
     render(){
         console.log("Inside render() [Person.js]");
-        return <Aux>
+        return <Aux> 
+            {this.props.authenticated ? <p>I am authenticated</p>:null}
             <h1 onClick={this.props.click}>I am a Person. My name is {this.props.name} and i am {this.props.age} years old.!! </h1>
            
             {/** Two-way binding */}

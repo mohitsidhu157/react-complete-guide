@@ -25,7 +25,7 @@ const cockpit = (props) => {
             <h1 key="1">{props.appTitle}</h1>
             <p className={classes.join(" ")} key="2"> This is really working!!</p>
             <button className={btnClass} onClick={props.toggle} key="3">Toggle Person</button>
-
+            <button onClick={props.login}>Log in</button>
         </Aux>
 
 }
